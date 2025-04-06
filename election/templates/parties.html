@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Political Parties</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url('static/parties.jpg') no-repeat center center/cover;
+        margin: 0;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 90px;
+        padding: 20px;
+        max-width: 1500px;
+      }
+      .card {
+        perspective: 1000px;
+      }
+      .card-inner {
+        position: relative;
+        width: 250px;
+        height: 300px;
+        text-align: center;
+        transform-style: preserve-3d;
+        transition: transform 0.6s;
+      }
+      .card:hover .card-inner {
+        transform: rotateY(180deg);
+      }
+      .card-front,
+      .card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:  #e3c5b2;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+      }
+      .card-front img,
+      .card-back img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+      .card-back {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+  
+    <div class="container">
+      <!-- Party Card Example -->
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img
+              src="https://logos-world.net/wp-content/uploads/2022/06/BJP-Logo.png"
+              alt="Party Logo"
+            />
+            <h3>Bharatiya Janata Party (BJP)</h3>
+            <p>
+              A right-wing party promoting Hindu nationalism, economic
+              development, and strong national security policies. It is the
+              ruling party at the national level.
+            </p>
+          </div>
+          <div class="card-back">
+            <img
+              src="https://m.media-amazon.com/images/I/81gkH5KqLlL.jpg"
+              alt="Leader Photo"
+            />
+            <h3>Narendra Modi (Prime Minister of India)</h3>
+            <a href="https://www.bjp.org/home">Know more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Repeat 8 times with different images and names -->
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2W4sK-sKOxzc7c7ah2QZv7itbLNqWztXcfQ&s"
+              alt="Party Logo"
+            />
+            <h3>Indian National Congress (INC)</h3>
+            <p>
+              One of India’s oldest parties, advocating for secularism, social
+              justice, and welfare policies. It has played a significant role in
+              India’s independence and post-independence politics.
+            </p>
+          </div>
+          <div class="card-back">
+            <img
+              src="https://m.economictimes.com/thumb/height-450,width-600,imgsize-83360,msid-95081196/mallikarjun-kharge-to-formally-take-over-as-congress-president-on-wednesday.jpg"
+              alt="Leader Photo"
+            />
+            <h3>Mallikarjun Kharge (Party President)</h3>
+            <a href="https://www.indiannationalcouncil.in/">Know more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Party Card Example -->
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKfOZLGDc3xn2vZ7zt5Ey42HcVomhsbOogpg&s"
+              alt="Party Logo"
+            />
+            <h3>Aam Aadmi Party (AAP)</h3>
+            <p>
+              A relatively new party focusing on governance reforms,
+              anti-corruption policies, and welfare schemes, primarily in Delhi
+              and Punjab.
+            </p>
+          </div>
+          <div class="card-back">
+            <img
+              src="https://www.hindustantimes.com/ht-img/img/2024/09/15/550x309/Delhi-chief-minister-Arvind-Kejriwal---File-Photo-_1726390332646.jpg"
+              alt="Leader Photo"
+            />
+            <h3>Arvind Kejriwal (Delhi Chief Minister)</h3>
+            <a href="https://aamaadmiparty.org/">Know more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Party Card Example -->
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img
+              src="https://www.globalsecurity.org/military/world/india/images/cpi-m.gif"
+              alt="Party Logo"
+            />
+            <h3>Communist Party of India (Marxist) (CPI-M)</h3>
+            <p>
+              A left-wing party advocating socialism, workers' rights, and state
+              control over key industries. It has strongholds in Kerala and West
+              Bengal.
+            </p>
+          </div>
+          <div class="card-back">
+            <img
+              src="https://images.news18.com/webstories/uploads/2024/09/2-2024-09-aab0886dbfa368d8632b977c2ee03784.png"
+              alt="Leader Photo"
+            />
+            <h3>Sitaram Yechury</h3>
+            <a href="https://cpim.org/">Know more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Party Card Example -->
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img
+              src="https://www.peacockride.com/cdn/shop/files/Bsp_522a32c1-df4d-456d-8242-24b28e2af2fb.jpg?v=1683788610"
+              alt="Party Logo"
+            />
+            <h3>Bahujan Samaj Party (BSP)</h3>
+            <p>
+              Focuses on the rights and empowerment of Dalits, backward classes,
+              and minorities, with a strong presence in Uttar Pradesh
+            </p>
+          </div>
+          <div class="card-back">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3npAYPeTnvXrZ8JTFLOkvogte67i-xwbkJQ&s"
+              alt="Leader Photo"
+            />
+            <h3>Mayawati</h3>
+
+            <a href="https://bahujansamajparty.net/">Know more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Party Card Example -->
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img
+              src="https://resize.indiatvnews.com/en/resize/newbucket/355_-/2019/04/fzkgvacg-400x400-1554600394.jpg"
+              alt="Party Logo"
+            />
+            <h3>National Peoples Party (NPP)</h3>
+            <p>
+              A centrist party from Northeast India, focused on regional
+              development and tribal rights. It is the first national party from
+              the region.
+            </p>
+          </div>
+          <div class="card-back">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4GAOc9MInLe4ybzrj1b60iiqi6VaLkFrl4g&s"
+              alt="Leader Photo"
+            />
+            <h3>Conrad Sangma (Meghalaya CM)</h3>
+
+            <a href="https://nppindia.in/">Know more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

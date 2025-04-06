@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landing page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 10px;
+        background-color: #eb6f46;
+        color: rgb(0, 0, 0);
+    }
+    .nav-container{
+        margin-bottom: 40px;
+       }
+       h2{
+        margin-bottom: 10px;
+       }
+       .nav1{
+        border: 2px solid rgb(0, 0, 0);
+        background-color: #e9e7e0;
+        padding: 10px;
+
+       }
+       .nav1 ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-around;
+       }
+       .nav1 li{
+        display: inline;
+       }
+       .nav1 a{
+        text-decoration: none;
+        color: white;
+        background-color: #a72218;
+        padding : 5px 15px ;
+        position: relative;
+       }
+
+       .nav1 a::after{
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 100px;
+        bottom: 0;
+        left: 0;
+        background-color: #e3c5b2;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+       }
+
+       .nav1 a:hover::after{
+        transform: scaleX(1)
+       }
+       .nav1 .login-btn,
+       .nav1 .register-btn{
+        background-color:  #a72218;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+
+       }
+
+      .chatbot-icon {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #eb6f46;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .chatbot-icon:hover {
+            background-color: #eb6f46;
+            transform: scale(1.1);
+        }
+
+        .chatbot-icon i {
+            font-size: 1.5rem;
+        }
+header { 
+    background-color: #e3c5b2; 
+    color: #4727c7; 
+    padding: 20px 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    }
+    header img { 
+        height: 80px; 
+        margin-right: 20px; 
+    }
+header h1 { 
+    font-size: 4em;
+     color: #a72218; 
+     text-shadow: 2px 2px #fff; 
+     margin: 0; 
+    }
+   main { 
+    padding: 40px; 
+    background-color: #e9e7e0; 
+    margin: 20px; 
+    border-radius: 15px;
+     color: #1C0C5B; 
+    }
+        section { 
+            margin-bottom: 30px; 
+        }
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr);
+             gap: 20px; margin-top: 30px;
+             }
+        .block { 
+            background-color:  #e3c5b2; 
+            padding: 20px;
+             border-radius: 10px;
+              color: #fff; 
+              text-align: center;
+               font-weight: bold; 
+               box-shadow: 2px 2px 8px rgba(0,0,0,0.2); 
+            }
+        footer { 
+            background-color:  #e9e7e0; 
+            color: #1C0C5B; 
+            text-align: center; 
+            padding: 15px; 
+            margin-top: 20px;
+             border-radius: 15px;
+             }
+    
+   
+
+</style>
+<body>
+<header>
+        <img src="static\logo.jpg" alt="AI Voting Logo">
+        <h1>🌐 AI-Powered Voting System 🗳</h1>
+    </header>
+   
+    <nav class="nav1">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/parties">Parties</a></li>
+            <li><a href="/maps">Center</a></li>
+            <li><a href="/ticket">Ticket</a></li>
+            <li><button onclick="window.location.href='/login'" class="login-btn">Login</button></li>
+            <li><button onclick="window.location.href='/register'" class="register-btn">Register</button></li>
+        </ul>
+    </nav>
+    </div>
+     <main>
+
+<section>
+            <h2 style="text-align: center; color: #00008B;">Key Features of Our System</h2>
+            <div class="grid-container">
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Registration & Authentication<br><br>Secure biometric verification and blockchain-based voter authentication.</div><br><br><img src="static\registration.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Voter Assistance<br><br>AI chatbot for guidance and real-time notifications.</div><br><br><img src="static\voter.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Online Voting<br><br>Encrypted online voting for remote and specially-abled voters.</div><br><br><img src="static\online voting.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Fraud Detection<br><br>AI-based fraud detection to prevent impersonation and fake votes.</div><br><br><img src="static\fraud.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Automated Vote Counting<br><br>Real-time vote counting with AI for fast and accurate results.</div><br><br><img src="static\vote counta.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Data Analysis<br><br>Comprehensive analytics for election insights and reports.</div><br><br><img src="static\analysis.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Accessibility<br><br>Designed for easy access for elderly and physically challenged voters.</div><br><br><img src="static\assecibility.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Secure Data Storage<br><br>Blockchain-secured vote data to prevent tampering.</div><br><br><img src="static\security.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+                <div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;"><div class="block" style="color: #00008B; border-bottom: 2px solid #fff; padding-bottom: 5px;">Smart Reminders<br><br>Timely alerts for voters to avoid missing out.</div><br><br><img src="static\reminders.jpg" alt="Feature Image" style="width: 80px; height: 80px; margin-top: 10px;"> </div>
+            </div>
+        </section>
+        <section style="margin-top: 40px;">
+            <h2 style="text-align: center; color: #00008B;">Contact Us</h2>
+            <form style="max-width: 500px; margin: 20px auto; background-color: #e3c5b2; padding: 20px; border-radius: 10px; color: #fff;">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name" style="width: 100%; margin-bottom: 10px; padding: 8px; border-radius: 5px;"><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address." style="width: 100%; margin-bottom: 10px; padding: 8px; border-radius: 5px;"><br>
+
+                <label for="message">Message:</label><br>
+                <textarea id="message" name="message" rows="4" style="width: 100%; margin-bottom: 10px; padding: 8px; border-radius: 5px;"></textarea><br>
+
+                <button type="submit" style="background-color: #1C0C5B; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Submit</button>
+            </form>
+        </section>
+
+       
+
+        </main>
+
+<footer>
+        <p>🌟YUGANTAR'S INITIATIVE🌟</p>
+    </footer>
+
+<!--
+       <a href="chatbot.html" class="chatbot-icon">
+        <i class="fas fa-robot"></i>
+    </a>
+-->
+    <a href="chatbot.html" class="chatbot-icon">
+        <i class="fas fa-robot"></i>
+    </a>
+
+
+
+</body>
+</html>

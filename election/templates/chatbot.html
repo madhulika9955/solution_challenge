@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteBot - Indian Election Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #A72218;
+            --secondary: #EB6F46;
+            --light: #E9E7E0;
+            --lighter: #E3C5B2;
+            --accent: #EB6F46;
+            --bot-bubble: #FFFFFF;
+            --user-bubble: #E3C5B2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .chatbot-container {
+            width: 100%;
+            max-width: 450px;
+            height: 650px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(74, 61, 122, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 1.2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .chatbot-header h2 {
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chatbot-header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .chatbot-body {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: var(--bot-bubble);
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--user-bubble);
+            border-bottom-right-radius: 5px;
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .quick-reply {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .quick-reply:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .chatbot-footer {
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid var(--lighter);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-footer input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--lighter);
+            border-radius: 30px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .chatbot-footer input:focus {
+            border-color: var(--secondary);
+        }
+
+        .send-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-btn:hover {
+            background-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 15px;
+            background-color: var(--bot-bubble);
+            border-radius: 18px;
+            width: fit-content;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .info-card h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .info-card p {
+            font-size: 0.9rem;
+            color: var(--primary);
+            opacity: 0.9;
+        }
+
+        .info-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .info-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Scrollbar styling */
+        .chatbot-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot-body::-webkit-scrollbar-track {
+            background: var(--lighter);
+            border-radius: 10px;
+        }
+
+        .chatbot-body::-webkit-scrollbar-thumb {
+            background: var(--secondary);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatbot-container">
+        <div class="chatbot-header">
+            <h2><i class="fas fa-robot"></i> VoteBot India</h2>
+            <p>Your AI assistant for election information</p>
+        </div>
+        
+        <div class="chatbot-body" id="chatBody">
+            <!-- Messages will appear here -->
+            <div class="message bot-message">
+                Welcome to VoteBot! I can help you with:
+                <div class="quick-replies">
+                    <button class="quick-reply" onclick="sendQuickReply(this)">Voter Registration</button>
+                    <button class="quick-reply" onclick="sendQuickReply(this)">Election Dates</button>
+                    <button class="quick-reply" onclick="sendQuickReply(this)">Voter ID Status</button>
+                    <button class="quick-reply" onclick="sendQuickReply(this)">Polling Stations</button>
+                    <button class="quick-reply" onclick="sendQuickReply(this)">Candidate Info</button>
+                    <button class="quick-reply" onclick="sendQuickReply(this)">Election Results</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-footer">
+            <input type="text" id="userInput" placeholder="Type your question..." autocomplete="off">
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Sample database of responses
+        const responses = {
+            "voter registration": {
+                message: "Here's how to register as a voter in India:",
+                card: {
+                    title: "Voter Registration Process",
+                    content: "1. Visit <a href='https://voterportal.eci.gov.in/' target='_blank'>NVSP Portal</a><br>2. Fill Form 6 online<br>3. Submit required documents<br>4. Verification by BLO<br>5. Receive voter ID card<br><br>You can also register offline at your nearest Electoral Registration Office."
+                },
+                quickReplies: ["Documents needed", "Check status", "Corrections"]
+            },
+            "election dates": {
+                message: "Upcoming election schedule in India:",
+                card: {
+                    title: "2024 General Election Dates",
+                    content: "• Phase 1: April 19<br>• Phase 2: April 26<br>• Phase 3: May 7<br>• Phase 4: May 13<br>• Phase 5: May 20<br>• Phase 6: May 25<br>• Phase 7: June 1<br><br>Results will be declared on June 4."
+                },
+                quickReplies: ["State elections", "Bye-elections", "Past elections"]
+            },
+            "voter id status": {
+                message: "To check your voter ID status:",
+                card: {
+                    title: "Voter ID Status Check",
+                    content: "1. Visit <a href='https://electoralsearch.in/' target='_blank'>Electoral Search</a><br>2. Enter your EPIC number or personal details<br>3. View your voter record<br><br>You can also check status via SMS: Send EPIC <voter-id-number> to 1950"
+                },
+                quickReplies: ["EPIC number help", "Download e-EPIC", "Corrections"]
+            },
+            "polling stations": {
+                message: "Find your polling station:",
+                card: {
+                    title: "Locate Your Polling Booth",
+                    content: "• Online: <a href='https://electoralsearch.in/' target='_blank'>Electoral Search Portal</a><br>• SMS: Send SMS POL <voter-id-number> to 1950<br>• Call: 1950 (ECI Helpline)<br>• Visit local Electoral Office<br><br>Your polling station details are also printed on your voter ID card."
+                },
+                quickReplies: ["Booth facilities", "Accessibility", "Map directions"]
+            },
+            "default": {
+                message: "I can help with voter registration, election dates, polling stations, and more. Please ask a specific question or choose from the options below:",
+                quickReplies: ["Voter Registration", "Election Dates", "Voter ID Status", "Polling Stations"]
+            }
+        };
+
+        // DOM elements
+        const chatBody = document.getElementById('chatBody');
+        const userInput = document.getElementById('userInput');
+
+        // Send message function
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message to chat
+            addMessage(message, 'user');
+            userInput.value = '';
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Simulate bot response after delay
+            setTimeout(() => {
+                respondToMessage(message.toLowerCase());
+            }, 1000);
+        }
+
+        // Quick reply function
+        function sendQuickReply(button) {
+            const message = button.textContent;
+            addMessage(message, 'user');
+            
+            // Show typing indicator
+            showTyping();
+            
+            // Simulate bot response after delay
+            setTimeout(() => {
+                respondToMessage(message.toLowerCase());
+            }, 800);
+        }
+
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', `${sender}-message`);
+            messageDiv.textContent = text;
+            chatBody.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('typing-indicator');
+            typingDiv.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            chatBody.appendChild(typingDiv);
+            scrollToBottom();
+            
+            // Remove after delay
+            setTimeout(() => {
+                typingDiv.remove();
+            }, 1500);
+        }
+
+        // Respond to user message
+        function respondToMessage(message) {
+            // Remove any existing typing indicators
+            document.querySelectorAll('.typing-indicator').forEach(el => el.remove());
+            
+            // Find matching response or use default
+            let responseKey = Object.keys(responses).find(key => 
+                message.includes(key) || responses[key].quickReplies.some(reply => 
+                    message.includes(reply.toLowerCase())
+                ));
+            
+            const response = responseKey ? responses[responseKey] : responses['default'];
+            
+            // Add bot message
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'bot-message');
+            messageDiv.textContent = response.message;
+            chatBody.appendChild(messageDiv);
+            
+            // Add info card if available
+            if (response.card) {
+                const cardDiv = document.createElement('div');
+                cardDiv.classList.add('info-card');
+                cardDiv.innerHTML = `
+                    <h4>${response.card.title}</h4>
+                    <p>${response.card.content}</p>
+                `;
+                chatBody.appendChild(cardDiv);
+            }
+            
+            // Add quick replies if available
+            if (response.quickReplies) {
+                const repliesDiv = document.createElement('div');
+                repliesDiv.classList.add('quick-replies');
+                
+                response.quickReplies.forEach(reply => {
+                    const button = document.createElement('button');
+                    button.classList.add('quick-reply');
+                    button.textContent = reply;
+                    button.onclick = function() { sendQuickReply(this); };
+                    repliesDiv.appendChild(button);
+                });
+                
+                chatBody.appendChild(repliesDiv);
+            }
+            
+            scrollToBottom();
+        }
+
+        // Scroll to bottom of chat
+        function scrollToBottom() {
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Allow sending message with Enter key
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Initial greeting
+        setTimeout(() => {
+            addMessage("Namaste! I'm VoteBot, your AI assistant for Indian election information. How can I help you today?", 'bot');
+        }, 500);
+    </script>
+</body>
+</html>

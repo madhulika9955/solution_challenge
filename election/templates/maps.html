@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voting Center Locator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: url('static/back.jpg') no-repeat center center/cover;
+      }
+      .container {
+        background: #e38a6c;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      input,
+      button {
+        margin: 10px 0;
+        padding: 10px;
+        width: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Find Your Nearest Voting Center</h2>
+      <input type="text" id="address" placeholder="Enter your address" />
+      <button onclick="findVotingCenter()">Find Center</button>
+      <p id="result"></p>
+      <a id="mapLink" href="#" target="_blank" style="display: none"
+        >Get Directions</a
+      >
+    </div>
+
+    <script>
+      function findVotingCenter() {
+        let address = document.getElementById("address").value;
+        if (!address) {
+          alert("Please enter an address.");
+          return;
+        }
+
+        // Mock location for demonstration purposes
+        let votingCenter = "Kendaraya Vidyalaya";
+        document.getElementById(
+          "result"
+        ).innerText = `Nearest Voting Center: ${votingCenter}`;
+
+        let googleMapsUrl = `https://www.google.com/maps/dir/${encodeURIComponent(
+          address
+        )}/${encodeURIComponent(votingCenter)}`;
+        let mapLink = document.getElementById("mapLink");
+        mapLink.href = googleMapsUrl;
+        mapLink.style.display = "block";
+      }
+    </script>
+  </body>
+</html>
